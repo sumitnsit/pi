@@ -52,7 +52,7 @@ sudo apt-get install -y nginx php5 php5-curl php5-cgi php5-fpm php5-gd php5-mysq
 ```shell
 git clone git://github.com/petrockblog/OwncloudPie.git
 cd OwncloudPie/
-./owncloudpie_setup.sh 
+./owncloudpie_setup.sh
 ```
 Select 1st option enter IP address of raspberry pi then select 2nd option.
 
@@ -116,7 +116,7 @@ sudo service pptpd restart
 sudo vi /etc/sysctl.conf
 ```
 Enable forwarding if you wish to have access to your entire home network while away.
-Find `net.ipv4.ip_forward=1` and uncomment it (or change =0 to =1) 
+Find `net.ipv4.ip_forward=1` and uncomment it (or change =0 to =1)
 ```shell
 sudo sysctl -p
 ```
@@ -218,7 +218,7 @@ esac
 exit 0
 ```
 ```shell
-sudo chmod +x /etc/init.d/vncboot 
+sudo chmod +x /etc/init.d/vncboot
 sudo update-rc.d vncboot defaults
 sudo /etc/init.d/vncboot start
 sudo reboot
@@ -228,11 +228,12 @@ sudo reboot
 ```shell
 sudo apt-get install nfs-kernel-server
 sudo vi /etc/exports
-/media/locker/nfs 192.168.1.0/255(rw,sync,no_subtree_check)
+/media/sumit/locker/Media/Movies *(rw,all_squash,insecure,no_subtree_check)
 sudo service rpcbind start
+sudo service nfs-kernel-server restart
 sudo vi /etc/netconfig
 ```
-Comment out
+Comment following two lines (add #)
 ```shell
 #udp6       tpi_clts      v     inet6    udp     -       -
 #tcp6       tpi_cots_ord  v     inet6    tcp     -       -
