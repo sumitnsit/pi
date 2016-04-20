@@ -20,171 +20,171 @@
 
     <section class="main-content">
       <h2>
-<a id="create-sd-card-on-mac" class="anchor" href="#create-sd-card-on-mac" aria-hidden="true"><span class="octicon octicon-link"></span></a>Create SD card on Mac</h2>
+<a id="create-sd-card-on-mac" class="anchor" href="#create-sd-card-on-mac" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Create SD card on Mac</h2>
 
-<div class="highlight highlight-shell"><pre>diskutil list
+<div class="highlight highlight-source-shell"><pre>diskutil list
 diskutil unmountDisk /dev/disk#
-sudo dd bs=1m <span class="pl-k">if</span>=2013-07-26-wheezy-raspbian.img of=/dev/disk#</pre></div>
+sudo dd bs=1m if=2013-07-26-wheezy-raspbian.img of=/dev/disk#</pre></div>
 
 <h2>
-<a id="create-sd-card-on-ubuntu" class="anchor" href="#create-sd-card-on-ubuntu" aria-hidden="true"><span class="octicon octicon-link"></span></a>Create SD card on Ubuntu</h2>
+<a id="create-sd-card-on-ubuntu" class="anchor" href="#create-sd-card-on-ubuntu" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Create SD card on Ubuntu</h2>
 
-<div class="highlight highlight-shell"><pre>sudo fdisk -l
-sudo dd <span class="pl-k">if</span>=/home/2012-10-28-wheezy-raspbian.img of=/dev/sdb</pre></div>
+<div class="highlight highlight-source-shell"><pre>sudo fdisk -l
+sudo dd if=/home/2012-10-28-wheezy-raspbian.img of=/dev/sdb</pre></div>
 
 <h2>
-<a id="static-ip" class="anchor" href="#static-ip" aria-hidden="true"><span class="octicon octicon-link"></span></a>Static IP</h2>
+<a id="static-ip" class="anchor" href="#static-ip" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Static IP</h2>
 
-<div class="highlight highlight-shell"><pre>vi /etc/network/interfaces</pre></div>
+<div class="highlight highlight-source-shell"><pre>vi /etc/network/interfaces</pre></div>
 
 <p>replace entire text with the following</p>
 
-<div class="highlight highlight-shell"><pre>iface eth0 inet static
+<div class="highlight highlight-source-shell"><pre>iface eth0 inet static
 address 192.168.1.99
 netmask 255.255.255.0
 gateway 192.168.1.1
-dns-nameservers 192.168.1.1</pre></div>
+dns-nameservers 192.168.1.1<span class="pl-s"><span class="pl-pds">`</span></span></pre></div>
 
 <h2>
-<a id="transmission" class="anchor" href="#transmission" aria-hidden="true"><span class="octicon octicon-link"></span></a>Transmission</h2>
+<a id="transmission" class="anchor" href="#transmission" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Transmission</h2>
 
-<div class="highlight highlight-shell"><pre>sudo apt-get install transmission transmission-daemon transmission-cli
+<div class="highlight highlight-source-shell"><pre>sudo apt-get install transmission transmission-daemon transmission-cli
 sudo service transmission-daemon stop
 sudo vi /etc/transmission-daemon/settings.json</pre></div>
 
 <p>Change following properties in settings.json</p>
 
-<div class="highlight highlight-json"><pre><span class="pl-s"><span class="pl-pds">"</span>download-dir<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>/media/locker/torrents<span class="pl-pds">"</span></span>,
+<div class="highlight highlight-source-json"><pre><span class="pl-s"><span class="pl-pds">"</span>download-dir<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>/media/locker/torrents<span class="pl-pds">"</span></span>,
 <span class="pl-s"><span class="pl-pds">"</span>rpc-authentication-required<span class="pl-pds">"</span></span>: <span class="pl-c1">true</span>,
 <span class="pl-s"><span class="pl-pds">"</span>rpc-password<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>YourPassword_in_english<span class="pl-pds">"</span></span>,
 <span class="pl-s"><span class="pl-pds">"</span>rpc-username<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>YourPrefferedUserName<span class="pl-pds">"</span></span>,
 <span class="pl-s"><span class="pl-pds">"</span>rpc-bind-address<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>0.0.0.0<span class="pl-pds">"</span></span>,
 <span class="pl-s"><span class="pl-pds">"</span>rpc-whitelist<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>*.*.*.*<span class="pl-pds">"</span></span>,</pre></div>
 
-<div class="highlight highlight-shell"><pre>sudo service transmission-daemon start</pre></div>
+<div class="highlight highlight-source-shell"><pre>sudo service transmission-daemon start</pre></div>
 
 <h2>
-<a id="owncloud" class="anchor" href="#owncloud" aria-hidden="true"><span class="octicon octicon-link"></span></a>ownCloud</h2>
+<a id="owncloud" class="anchor" href="#owncloud" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>ownCloud</h2>
 
-<div class="highlight highlight-shell"><pre>sudo apt-get update <span class="pl-k">&amp;&amp;</span> apt-get upgrade
+<div class="highlight highlight-source-shell"><pre>sudo apt-get update <span class="pl-k">&amp;&amp;</span> apt-get upgrade
 sudo apt-get install -y git dialog
 sudo apt-get install -y nginx php5 php5-curl php5-cgi php5-fpm php5-gd php5-mysql mysql-server</pre></div>
 
-<div class="highlight highlight-shell"><pre>git clone git://github.com/petrockblog/OwncloudPie.git
+<div class="highlight highlight-source-shell"><pre>git clone git://github.com/petrockblog/OwncloudPie.git
 <span class="pl-c1">cd</span> OwncloudPie/
 ./owncloudpie_setup.sh </pre></div>
 
 <p>Select 1st option enter IP address of raspberry pi then select 2nd option.</p>
 
 <h2>
-<a id="install-minildna" class="anchor" href="#install-minildna" aria-hidden="true"><span class="octicon octicon-link"></span></a>Install minildna</h2>
+<a id="install-minildna" class="anchor" href="#install-minildna" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Install minildna</h2>
 
-<div class="highlight highlight-shell"><pre>sudo apt-get install minidlna
+<div class="highlight highlight-source-shell"><pre>sudo apt-get install minidlna
 sudo vi /etc/minidlna.conf</pre></div>
 
 <p>Add following line, Make sure that your folders are owned by minidlna</p>
 
-<div class="highlight highlight-properties"><pre><span class="pl-k">media_dir</span>=P,/media/locker/Photos
+<div class="highlight highlight-source-ini"><pre><span class="pl-k">media_dir</span>=P,/media/locker/Photos
 <span class="pl-k">root_container</span>=P
 sudo service minidlna force-reload</pre></div>
 
 <p>Use a different container as the root of the tree exposed to clients. The possible values are:</p>
 
-<div class="highlight highlight-shell"><pre><span class="pl-c1">.</span> to use the standard container (this is the default)<span class="pl-k">;</span>
+<div class="highlight highlight-source-shell"><pre><span class="pl-c1">.</span> to use the standard container (this is the default)<span class="pl-k">;</span>
 B to use the “Browse Directory” container<span class="pl-k">;</span>
 M to use the “Music” container<span class="pl-k">;</span>
 V to use the “Video” container<span class="pl-k">;</span>
 P to use the “Pictures” container.</pre></div>
 
 <h2>
-<a id="install-vpn" class="anchor" href="#install-vpn" aria-hidden="true"><span class="octicon octicon-link"></span></a>Install VPN</h2>
+<a id="install-vpn" class="anchor" href="#install-vpn" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Install VPN</h2>
 
-<div class="highlight highlight-shell"><pre>sudo apt-get update
+<div class="highlight highlight-source-shell"><pre>sudo apt-get update
 sudo apt-get upgrade
 sudo modprobe ppp-compress-18</pre></div>
 
 <p>Above command should not display any error</p>
 
-<div class="highlight highlight-shell"><pre>sudo apt-get install pptpd
+<div class="highlight highlight-source-shell"><pre>sudo apt-get install pptpd
 sudo vi /etc/pptpd.conf</pre></div>
 
 <p>At the end of the file, uncomment the following lines</p>
 
-<div class="highlight highlight-shell"><pre>localip 192.168.1.99
+<div class="highlight highlight-source-shell"><pre>localip 192.168.1.99
 remoteip 192.168.1.50-238,192.168.1.255</pre></div>
 
 <p>And change the "localip" to your raspberry pi ip address
 Remoteip = are the addresses that will be handed out to clients.</p>
 
-<div class="highlight highlight-shell"><pre>sudo vi /etc/ppp/pptpd-options</pre></div>
+<div class="highlight highlight-source-shell"><pre>sudo vi /etc/ppp/pptpd-options</pre></div>
 
 <p>Add the following text at the bottom:</p>
 
-<div class="highlight highlight-shell"><pre>ms-dns 192.168.1.1
+<div class="highlight highlight-source-shell"><pre>ms-dns 192.168.1.1
 noipx
 mtu 1490
 mru 1490</pre></div>
 
 <p>Where the IP used for the ms-dns directive is the IP address of your router.</p>
 
-<div class="highlight highlight-shell"><pre>sudo vi /etc/ppp/chap-secrets</pre></div>
+<div class="highlight highlight-source-shell"><pre>sudo vi /etc/ppp/chap-secrets</pre></div>
 
 <p>This is where you will place your credentials for logging into the VPN server add your authentication credentials in the following form:</p>
 
-<div class="highlight highlight-shell"><pre>username[TAB]<span class="pl-k">*</span>[TAB]password[TAB]<span class="pl-k">*</span>
+<div class="highlight highlight-source-shell"><pre>username[TAB]<span class="pl-k">*</span>[TAB]password[TAB]<span class="pl-k">*</span>
 sudo service pptpd restart
 sudo vi /etc/sysctl.conf</pre></div>
 
 <p>Enable forwarding if you wish to have access to your entire home network while away.
 Find <code>net.ipv4.ip_forward=1</code> and uncomment it (or change =0 to =1) </p>
 
-<div class="highlight highlight-shell"><pre>sudo sysctl -p</pre></div>
+<div class="highlight highlight-source-shell"><pre>sudo sysctl -p</pre></div>
 
 <h2>
-<a id="install-java" class="anchor" href="#install-java" aria-hidden="true"><span class="octicon octicon-link"></span></a>Install Java</h2>
+<a id="install-java" class="anchor" href="#install-java" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Install Java</h2>
 
 <p>download java from oracle the following link and move to raspberry pi
-<a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-arm-downloads-2187472.html">Download</a></p>
+<a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-arm-downloads-2187472.html">http://www.oracle.com/technetwork/java/javase/downloads/jdk8-arm-downloads-2187472.html</a></p>
 
-<div class="highlight highlight-shell"><pre>sudo tar zxvf jdk-8-linux-arm-vfp-hflt.tar.gz -C /opt</pre></div>
+<div class="highlight highlight-source-shell"><pre>sudo tar zxvf jdk-8-linux-arm-vfp-hflt.tar.gz -C /opt</pre></div>
 
 <p>Set default java and javac to the new installed jdk8.</p>
 
-<div class="highlight highlight-shell"><pre>sudo update-alternatives --install /usr/bin/javac javac /opt/jdk1.8.X/bin/javac 1
+<div class="highlight highlight-source-shell"><pre>sudo update-alternatives --install /usr/bin/javac javac /opt/jdk1.8.X/bin/javac 1
 sudo update-alternatives --install /usr/bin/java java /opt/jdk1.8.X/bin/java 1
 sudo update-alternatives --config javac
 sudo update-alternatives --config java</pre></div>
 
 <p>After all, verify with the commands with -version option.</p>
 
-<div class="highlight highlight-shell"><pre>java -version
+<div class="highlight highlight-source-shell"><pre>java -version
 javac -version</pre></div>
 
 <h2>
-<a id="add-apple-os-x-hfs-readwrite-support" class="anchor" href="#add-apple-os-x-hfs-readwrite-support" aria-hidden="true"><span class="octicon octicon-link"></span></a>Add Apple OS X HFS+ read/write support</h2>
+<a id="add-apple-os-x-hfs-readwrite-support" class="anchor" href="#add-apple-os-x-hfs-readwrite-support" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Add Apple OS X HFS+ read/write support</h2>
 
-<div class="highlight highlight-shell"><pre>sudo apt-get install hfsutils hfsprogs hfsutils</pre></div>
+<div class="highlight highlight-source-shell"><pre>sudo apt-get install hfsutils hfsprogs hfsutils</pre></div>
 
 <h2>
-<a id="add-ntfs-rw-support" class="anchor" href="#add-ntfs-rw-support" aria-hidden="true"><span class="octicon octicon-link"></span></a>Add NTFS rw support</h2>
+<a id="add-ntfs-rw-support" class="anchor" href="#add-ntfs-rw-support" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Add NTFS rw support</h2>
 
-<div class="highlight highlight-shell"><pre>sudo apt-get install ntfs-3g
+<div class="highlight highlight-source-shell"><pre>sudo apt-get install ntfs-3g
 sudo mount /dev/sda1 /mnt/usbdrive</pre></div>
 
 <h2>
-<a id="mount-external-drive" class="anchor" href="#mount-external-drive" aria-hidden="true"><span class="octicon octicon-link"></span></a>Mount External Drive</h2>
+<a id="mount-external-drive" class="anchor" href="#mount-external-drive" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Mount External Drive</h2>
 
-<div class="highlight highlight-shell"><pre>sudo vi /etc/fstab</pre></div>
+<div class="highlight highlight-source-shell"><pre>sudo vi /etc/fstab</pre></div>
 
 <p>Add following line as per your drive and mount point</p>
 
-<div class="highlight highlight-shell"><pre>/dev/sda1   /media/locker   ext4    defaults,noatime    0   1
+<div class="highlight highlight-source-shell"><pre>/dev/sda1   /media/locker   ext4    defaults,noatime    0   1
 sudo reboot</pre></div>
 
 <h2>
-<a id="apple-timemachine" class="anchor" href="#apple-timemachine" aria-hidden="true"><span class="octicon octicon-link"></span></a>Apple TimeMachine</h2>
+<a id="apple-timemachine" class="anchor" href="#apple-timemachine" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Apple TimeMachine</h2>
 
-<div class="highlight highlight-shell"><pre>sudo apt-get install netatalk
+<div class="highlight highlight-source-shell"><pre>sudo apt-get install netatalk
 mkdir /media/Locker/TimeMachine
 sudo <span class="pl-c1">echo</span> <span class="pl-s"><span class="pl-pds">"</span>/media/locker/TimeMachine <span class="pl-cce">\"</span>Time Machine<span class="pl-cce">\"</span> options:tm<span class="pl-pds">"</span></span> <span class="pl-k">&gt;&gt;</span> /etc/netatalk/AppleVolumes.default
 sudo service netatalk restart</pre></div>
@@ -192,19 +192,19 @@ sudo service netatalk restart</pre></div>
 <p>Open TimeMachine on Mac, you should see a shared drive.</p>
 
 <h2>
-<a id="retropie-setup" class="anchor" href="#retropie-setup" aria-hidden="true"><span class="octicon octicon-link"></span></a>RetroPie-Setup</h2>
+<a id="retropie-setup" class="anchor" href="#retropie-setup" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>RetroPie-Setup</h2>
 
 <p><a href="https://github.com/petrockblog/RetroPie-Setup">https://github.com/petrockblog/RetroPie-Setup</a></p>
 
 <h2>
-<a id="install-vnc-server" class="anchor" href="#install-vnc-server" aria-hidden="true"><span class="octicon octicon-link"></span></a>Install VNC server</h2>
+<a id="install-vnc-server" class="anchor" href="#install-vnc-server" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Install VNC server</h2>
 
-<div class="highlight highlight-shell"><pre>sudo apt-get install xorg lxde-core lxde-icon-theme tightvncserver
+<div class="highlight highlight-source-shell"><pre>sudo apt-get install xorg lxde-core lxde-icon-theme tightvncserver
 sudo vi /etc/init.d/vncboot</pre></div>
 
 <p>Paste following text</p>
 
-<div class="highlight highlight-shell"><pre><span class="pl-c">### BEGIN INIT INFO</span>
+<div class="highlight highlight-source-shell"><pre><span class="pl-c">### BEGIN INIT INFO</span>
 <span class="pl-c"># Provides: vncboot</span>
 <span class="pl-c"># Required-Start: $remote_fs $syslog</span>
 <span class="pl-c"># Required-Stop: $remote_fs $syslog</span>
@@ -236,15 +236,15 @@ stop)
 <span class="pl-k">esac</span>
 <span class="pl-c1">exit</span> 0</pre></div>
 
-<div class="highlight highlight-shell"><pre>sudo chmod +x /etc/init.d/vncboot 
+<div class="highlight highlight-source-shell"><pre>sudo chmod +x /etc/init.d/vncboot 
 sudo update-rc.d vncboot defaults
 sudo /etc/init.d/vncboot start
 sudo reboot</pre></div>
 
 <h2>
-<a id="nfs-network-file-system" class="anchor" href="#nfs-network-file-system" aria-hidden="true"><span class="octicon octicon-link"></span></a>NFS (Network File System)</h2>
+<a id="nfs-network-file-system" class="anchor" href="#nfs-network-file-system" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>NFS (Network File System)</h2>
 
-<div class="highlight highlight-shell"><pre>sudo apt-get install nfs-kernel-server
+<div class="highlight highlight-source-shell"><pre>sudo apt-get install nfs-kernel-server
 sudo vi /etc/exports
 /media/locker/nfs 192.168.1.0/255(rw,sync,no_subtree_check)
 sudo service rpcbind start
@@ -252,85 +252,85 @@ sudo vi /etc/netconfig</pre></div>
 
 <p>Comment out</p>
 
-<div class="highlight highlight-shell"><pre><span class="pl-c">#udp6       tpi_clts      v     inet6    udp     -       -</span>
+<div class="highlight highlight-source-shell"><pre><span class="pl-c">#udp6       tpi_clts      v     inet6    udp     -       -</span>
 <span class="pl-c">#tcp6       tpi_cots_ord  v     inet6    tcp     -       -</span></pre></div>
 
 <h2>
-<a id="on-mac-os-x" class="anchor" href="#on-mac-os-x" aria-hidden="true"><span class="octicon octicon-link"></span></a>On Mac OS X</h2>
+<a id="on-mac-os-x" class="anchor" href="#on-mac-os-x" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>On Mac OS X</h2>
 
-<div class="highlight highlight-shell"><pre>sudo mount_nfs -o resvport pi:/media/locker/nfs /Volumes/NFS/</pre></div>
-
-<h2>
-<a id="mp4-to-mkv" class="anchor" href="#mp4-to-mkv" aria-hidden="true"><span class="octicon octicon-link"></span></a>MP4 to MKV</h2>
-
-<div class="highlight highlight-shell"><pre>avconv -i input.mkv -c copy output.m4v</pre></div>
+<div class="highlight highlight-source-shell"><pre>sudo mount_nfs -o resvport pi:/media/locker/nfs /Volumes/NFS/</pre></div>
 
 <h2>
-<a id="disk-operations" class="anchor" href="#disk-operations" aria-hidden="true"><span class="octicon octicon-link"></span></a>Disk Operations</h2>
+<a id="mp4-to-mkv" class="anchor" href="#mp4-to-mkv" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>MP4 to MKV</h2>
+
+<div class="highlight highlight-source-shell"><pre>avconv -i input.mkv -c copy output.m4v</pre></div>
+
+<h2>
+<a id="disk-operations" class="anchor" href="#disk-operations" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Disk Operations</h2>
 
 <h3>
-<a id="mount-a-usb-drive" class="anchor" href="#mount-a-usb-drive" aria-hidden="true"><span class="octicon octicon-link"></span></a>Mount a USB drive</h3>
+<a id="mount-a-usb-drive" class="anchor" href="#mount-a-usb-drive" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Mount a USB drive</h3>
 
-<div class="highlight highlight-shell"><pre>sudo mount /dev/sda1 /mnt/usbdrive</pre></div>
+<div class="highlight highlight-source-shell"><pre>sudo mount /dev/sda1 /mnt/usbdrive</pre></div>
 
 <h3>
-<a id="list-your-file-systems" class="anchor" href="#list-your-file-systems" aria-hidden="true"><span class="octicon octicon-link"></span></a>List your file systems</h3>
+<a id="list-your-file-systems" class="anchor" href="#list-your-file-systems" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>List your file systems</h3>
 
-<div class="highlight highlight-shell"><pre>sudo fdisk -l
+<div class="highlight highlight-source-shell"><pre>sudo fdisk -l
 sudo mount -l
 df -h</pre></div>
 
 <h3>
-<a id="unmount-a-usb-drive" class="anchor" href="#unmount-a-usb-drive" aria-hidden="true"><span class="octicon octicon-link"></span></a>Unmount a USB drive</h3>
+<a id="unmount-a-usb-drive" class="anchor" href="#unmount-a-usb-drive" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Unmount a USB drive</h3>
 
-<div class="highlight highlight-shell"><pre>sudo umount /dev/sda1</pre></div>
+<div class="highlight highlight-source-shell"><pre>sudo umount /dev/sda1</pre></div>
 
 <p>You may need to use the -f force option if the drive will not dismount.</p>
 
-<div class="highlight highlight-shell"><pre>sudo umount -f /dev/sda1</pre></div>
+<div class="highlight highlight-source-shell"><pre>sudo umount -f /dev/sda1</pre></div>
 
 <h3>
-<a id="format-a-drive" class="anchor" href="#format-a-drive" aria-hidden="true"><span class="octicon octicon-link"></span></a>Format a drive</h3>
+<a id="format-a-drive" class="anchor" href="#format-a-drive" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Format a drive</h3>
 
 <p>First you must unmount the drive you wish to format.</p>
 
 <h4>
-<a id="format-a-drive-to-ext4" class="anchor" href="#format-a-drive-to-ext4" aria-hidden="true"><span class="octicon octicon-link"></span></a>Format a drive to EXT4</h4>
+<a id="format-a-drive-to-ext4" class="anchor" href="#format-a-drive-to-ext4" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Format a drive to EXT4</h4>
 
-<div class="highlight highlight-shell"><pre>sudo mkfs.ext4 /dev/sda1 -L untitled</pre></div>
-
-<h4>
-<a id="format-a-drive-to-hfs" class="anchor" href="#format-a-drive-to-hfs" aria-hidden="true"><span class="octicon octicon-link"></span></a>Format a drive to HFS+</h4>
-
-<div class="highlight highlight-shell"><pre>sudo mkfs.hfsplus /dev/sda1 -v untitled</pre></div>
+<div class="highlight highlight-source-shell"><pre>sudo mkfs.ext4 /dev/sda1 -L untitled</pre></div>
 
 <h4>
-<a id="format-a-drive-to-ntfs" class="anchor" href="#format-a-drive-to-ntfs" aria-hidden="true"><span class="octicon octicon-link"></span></a>Format a drive to NTFS</h4>
+<a id="format-a-drive-to-hfs" class="anchor" href="#format-a-drive-to-hfs" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Format a drive to HFS+</h4>
 
-<div class="highlight highlight-shell"><pre>sudo mkfs.ntfs /dev/sda1 -f -v -I -L untitled
+<div class="highlight highlight-source-shell"><pre>sudo mkfs.hfsplus /dev/sda1 -v untitled</pre></div>
+
+<h4>
+<a id="format-a-drive-to-ntfs" class="anchor" href="#format-a-drive-to-ntfs" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Format a drive to NTFS</h4>
+
+<div class="highlight highlight-source-shell"><pre>sudo mkfs.ntfs /dev/sda1 -f -v -I -L untitled
 
 -f Fast Format. Due to the poor performance of 3g.ntfs on the Pi I highly recommend using the less CPU intensive fast format mode.
 -v Verbose. By default the NTFS status output is limited so this lets you know what is happening.
 -I Disable Windows Indexing. This improves the write performance of the drive but it will mean Windows Search queries used on this drive will take longer.</pre></div>
 
 <h4>
-<a id="add-windowsdos-fat32-readwrite-support" class="anchor" href="#add-windowsdos-fat32-readwrite-support" aria-hidden="true"><span class="octicon octicon-link"></span></a>Add Windows/DOS FAT32 read/write support</h4>
+<a id="add-windowsdos-fat32-readwrite-support" class="anchor" href="#add-windowsdos-fat32-readwrite-support" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Add Windows/DOS FAT32 read/write support</h4>
 
-<div class="highlight highlight-shell"><pre>sudo apt-get install dosfstools</pre></div>
-
-<h4>
-<a id="format-a-drive-to-fat32" class="anchor" href="#format-a-drive-to-fat32" aria-hidden="true"><span class="octicon octicon-link"></span></a>Format a drive to FAT32</h4>
-
-<div class="highlight highlight-shell"><pre>sudo mkfs.vfat /dev/sda1 -n untitled</pre></div>
+<div class="highlight highlight-source-shell"><pre>sudo apt-get install dosfstools</pre></div>
 
 <h4>
-<a id="automatically-mount-a-drive" class="anchor" href="#automatically-mount-a-drive" aria-hidden="true"><span class="octicon octicon-link"></span></a>Automatically Mount A Drive</h4>
+<a id="format-a-drive-to-fat32" class="anchor" href="#format-a-drive-to-fat32" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Format a drive to FAT32</h4>
 
-<div class="highlight highlight-shell"><pre>sudo vi /etc/fstab</pre></div>
+<div class="highlight highlight-source-shell"><pre>sudo mkfs.vfat /dev/sda1 -n untitled</pre></div>
+
+<h4>
+<a id="automatically-mount-a-drive" class="anchor" href="#automatically-mount-a-drive" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Automatically Mount A Drive</h4>
+
+<div class="highlight highlight-source-shell"><pre>sudo vi /etc/fstab</pre></div>
 
 <p>Add the following to the bottom of the file.</p>
 
-<div class="highlight highlight-shell"><pre>/dev/sda1 /mnt/usbdisk auto defaults,user 0 1
+<div class="highlight highlight-source-shell"><pre>/dev/sda1 /mnt/usbdisk auto defaults,user 0 1
 /dev/sda1 is the location of the drive to mount.
 /mnt/usbdisk is the mount point, which is the folder to access the content of the drive.
 
@@ -339,33 +339,6 @@ df -h</pre></div>
 <span class="pl-c"># 0 A binary value used for debugging. It is best to keep this set at zero.</span>
 <span class="pl-c"># 1 Pass number for a filesystem check at boot. ‘0‘ (zero) to disable or ‘2‘ to enable.</span></pre></div>
 
-<div id="disqus_thread"></div>
-    <script type="text/javascript">
-        /* * * CONFIGURATION VARIABLES * * */
-        var disqus_shortname = 'mypi';
-        
-        /* * * DON'T EDIT BELOW THIS LINE * * */
-        (function() {
-            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-        })();
-    </script>
-    
-    <!-- Do not change the code! -->
-<a id="foxyform_embed_link_712446" href="http://www.foxyform.com/">foxyform</a>
-<script type="text/javascript">
-(function(d, t){
-   var g = d.createElement(t),
-       s = d.getElementsByTagName(t)[0];
-   g.src = "http://www.foxyform.com/js.php?id=712446&sec_hash=07bc4eb70ad&width=100%";
-   s.parentNode.insertBefore(g, s);
-}(document, "script"));
-</script>
-<!-- Do not change the code! -->
-
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-    
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/sumitnsit/pi">Raspberry PI</a> is maintained by <a href="https://github.com/sumitnsit">sumitnsit</a>.</span>
 
