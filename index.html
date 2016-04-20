@@ -246,8 +246,9 @@ sudo reboot</pre></div>
 
 <div class="highlight highlight-source-shell"><pre>sudo apt-get install nfs-kernel-server
 sudo vi /etc/exports
-/media/locker/nfs 192.168.1.0/255(rw,sync,no_subtree_check)
+/media/sumit/locker/Media/Movies <span class="pl-k">*</span>(rw,all_squash,insecure,no_subtree_check)
 sudo service rpcbind start
+sudo service nfs-kernel-server restart
 sudo vi /etc/netconfig</pre></div>
 
 <p>Comment out</p>
