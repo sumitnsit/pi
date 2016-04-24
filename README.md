@@ -229,6 +229,7 @@ sudo reboot
 sudo apt-get install nfs-kernel-server
 sudo vi /etc/exports
 /media/sumit/locker/Media/Movies *(rw,all_squash,insecure,no_subtree_check)
+sudo update-rc.d rpcbind enable && sudo update-rc.d nfs-common enable
 sudo service rpcbind start
 sudo service nfs-kernel-server restart
 sudo vi /etc/netconfig
