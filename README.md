@@ -20,10 +20,10 @@ replace entire text with the following
 
 ```shell
 iface eth0 inet static
-address 192.168.1.99
+address 192.168.1.9
 netmask 255.255.255.0
 gateway 192.168.1.1
-dns-nameservers 192.168.1.1`
+dns-nameservers 192.168.1.1
 ```
 ## Transmission
 ```shell
@@ -242,6 +242,10 @@ Comment following two lines (add #)
 ## On Mac OS X
 ```shell
 sudo mount_nfs -o resvport pi:/media/locker/nfs /Volumes/NFS/
+```
+## On Ubuntu
+```shell
+sudo mount -t nfs -o proto=tcp,port=2049 192.168.0.9:/shared/path /mnt/locker
 ```
 
 ## MP4 to MKV
